@@ -1,34 +1,36 @@
 <template>
   <div class="loginPublic">
-    <h3 slot="loginTitle">手机号码登录</h3>
+    <h3>{{title}}</h3>
     <div class="login">
       <div class="loginLeft">
         <div class="left">
           <div class="rightBor">
             <input type="text" placeholder="手机号" class="phone" v-show="isShowPhone" ref="phone">
-            <input type="text" placeholder="饿着了账号" class="phone" v-show="isAccountShow" ref="account">
+            <input type="email" placeholder="饿着了账号" class="phone" v-show="isAccountShow" ref="email">
           </div>
           <div class="rightBor">
-            <input type="password" placeholder="密码" class="password rightBor" v-show="isAccountShow">
+            <input type="password" placeholder="密码" class="password rightBor" v-show="isAccountShow" ref="password">
           </div>
           <div class="rightBor" style="text-align: left;">
             <input type="text" placeholder="验证码" class="code" v-show="isShowCode" ref="code">
-            <button class="getCode" v-show="isShowCode" @click="getPhoneCode" :disabled="isDisabled" :class="{disabled:isDisabled}">
-              {{codeBtnText}}</button>
+            <button class="getCode" v-show="isShowCode" @click="getPhoneCode" :disabled="isDisabled"
+                    :class="{disabled:isDisabled}">
+              {{codeBtnText}}
+            </button>
             <button class="getCode" v-show="!isShowCode" @click="showCode" style="margin-left: 0;">{{checkStatus}}<img
                     src="~assets/icon/success.png" alt="" style="width: 15%;vertical-align: middle" v-show="imgShow">
             </button>
             <Vcode :show="isShowVcode" @success="success" @close="close"></Vcode>
           </div>
           <div class="loginMethod">
-            <a @click="changeAccount">{{loginMethod}}</a>
+            <a @click="changeAccount" style="cursor: pointer;">{{loginMethod}}</a>
             <router-link to="/forget"><a>忘记密码</a></router-link>
           </div>
           <div class="tips">
             未注册的饿着了官网账户的手机号,在使用验 证码登录时将自动注册。
           </div>
           <div class="agree">
-            <input type="checkbox" name="agree" @click="agreeClick">
+            <input type="checkbox" name="agree" @click="agreeClick" :checked="isAgree">
             <p>我已阅读并接受<span>个人信息收集声明</span>以及<span>网站使用和销售条款</span></p>
           </div>
           <div>
@@ -36,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="cneterBor"></div>
+      <div class="centerBor"></div>
       <div class="loginRight">
         <div class="right">
           <div>
@@ -61,23 +63,25 @@
 <script>
   import Vcode from "vue-puzzle-vcode";
 
+  import {checkAll} from "common/mixin";
+
   export default {
     name: "usePublic",
     components: {
       Vcode
     },
+    mixins: [checkAll],
     data() {
       return {
         isShowPhone: true,  //显示手机登录
         isAccountShow: false,  //显示账户登录
         loginMethod: '饿着了账户登录',
-        isShowVcode: false,  //显示验证码
         isShowCode: true,  //显示验证码按钮
-        checkStatus: '点击验证',
-        imgShow: false,  //验证成功照片显示
-        isAgree:false,  //是否同意个人信息采集声明
-        isDisabled:false,
-        codeBtnText:'发送验证码'
+        isDisabled: false,  //发送验证码按钮是否禁用
+        codeBtnText: '发送验证码',
+        title: '手机号码登录',
+        isAgree: false,  //是否同意个人信息采集声明
+        phone:''
       }
     },
     methods: {
@@ -86,76 +90,89 @@
         this.isAccountShow = !this.isAccountShow
         this.isShowPhone = !this.isShowPhone
         this.isShowCode = !this.isShowCode
+        this.isAgree = false
         if (!this.isShowPhone) {
           this.loginMethod = '手机号登录'
           this.checkStatus = '点击验证'
           this.imgShow = false
+          this.title = '饿着了账户登录'
         } else {
           this.loginMethod = '饿着了账户登录'
+          this.title = '手机号码登录'
+        }
+      },
+      //是否同意网站协议
+      checkAgree() {
+        if (!this.isAgree) {
+          this.showToast('请先同意网站使用和销售条款')
+          return false
+        } else {
+          return true
         }
       },
       //获取手机验证码
-      getPhoneCode(){
-        let phone = this.$refs.phone.value
-        if (phone === ''){
-          this.showToast('请先填写手机号码')
-        }else if (!(/^[1][3,4,5,6,7,8,9][0-9]{9}$/.test(phone))){
-          this.showToast('请先填写正确的手机号码')
-        }else{
+      getPhoneCode() {
+        if (this.checkPhone()) {
+          //在这里进行发送手机验证码并获取后台返回的验证码进行判断
           this.isDisabled = true
           let sec = 60
-          this.codeBtnText = '重新发送（'+sec+'）'
-          var timer = setInterval(()=>{
+          this.codeBtnText = '重新发送（' + sec + '）'
+          var timer = setInterval(() => {
             sec--
-            this.codeBtnText = '重新发送（'+sec+'）'
-            if (sec === 0){
+            this.codeBtnText = '重新发送（' + sec + '）'
+            if (sec === 0) {
               this.isDisabled = false
               this.codeBtnText = '重新发送'
               clearInterval(timer)
             }
-          },1000)
-
+          }, 1000)
         }
       },
-      //显示验证码
-      showCode() {
-        this.isShowVcode = true
-      },
-      //验证码成功
-      success() {
-        this.isShowVcode = false
-        this.imgShow = true
-        this.checkStatus = '验证成功'
-      },
-      //点击遮罩隐藏验证码
-      close() {
-        this.isShowVcode = false;
-      },
+
       //网站协议同意
-      agreeClick(){
+      agreeClick() {
         this.isAgree = !this.isAgree
       },
-      //点击登录按钮验证
-      loginClick(){
-        if (this.$refs.phone.value === ''){
-          this.showToast('请填写手机号码')
-        }else if (this.$refs.code.value === ''){
-          this.showToast('请填写验证码')
-        }else if(!this.isAgree){
-          this.showToast('请先同意网站使用和销售条款')
+      //检查是否填写密码
+      checkPassword() {
+        if (this.$refs.password.value === '') {
+          this.showToast('请填写您的密码')
+          return false
+        } else {
+          return true
         }
       },
-      showToast(message){
-        this.$swal({
-          text: message
-        })
-      }
+      //是否填写验证码
+      checkCode() {
+        if (this.$refs.code.value === '') {
+          this.showToast('请填写验证码')
+          return false
+        } else {
+          return true
+        }
+      },
+
+      //点击登录按钮验证
+      loginClick() {
+        this.phone = this.$refs.phone.value
+        if (this.isShowPhone) {
+          this.phone = this.$refs.phone.value
+          if (this.checkPhone() && this.checkCode() && this.checkAgree()) {
+            this.showToast('验证通过')
+          }
+        } else {
+          if (this.checkEmail() && this.checkPassword() && this.checkImgCode() && this.checkAgree()) {
+            this.showToast('验证通过')
+          }
+        }
+      },
+
     }
   }
 </script>
 
 <style scoped>
-  .cneterBor {
+  .centerBor {
     margin-top: 40px;
     height: 200px;
     width: 2px;
@@ -168,8 +185,8 @@
 
   h3 {
     width: 1200px;
-    margin: 0 auto;
     height: 80px;
+    margin: 0 auto;
     line-height: 80px;
   }
 
@@ -227,6 +244,11 @@
     text-align: left;
   }
 
+
+  .disabled {
+    background: #b6b6b6 !important;
+  }
+
   .loginLeft .agree {
     display: flex;
     justify-content: space-around;
@@ -243,9 +265,8 @@
     cursor: pointer;
     background: none;
   }
-  .disabled{
-    background: #b6b6b6 !important;
-  }
+
+
   input[type=checkbox]:after {
     position: absolute;
     width: 16px;

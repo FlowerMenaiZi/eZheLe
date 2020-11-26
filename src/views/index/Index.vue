@@ -1,6 +1,5 @@
 <template>
   <div>
-    <HeaderLogo> </HeaderLogo>
     <indexBanner/>
     <indexRank/>
     <indexShop title="今日套餐推荐"/>
@@ -8,8 +7,6 @@
     <indexNearby/>
     <Footer/>
     <Copyright/>
-
-
   </div>
 </template>
 

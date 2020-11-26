@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <Header v-show="isShow"/>
+    <HeaderLogo v-show="isShow"></HeaderLogo>
     <router-view/>
   </div>
 </template>
 
 <script>
   import Header from "components/Header";
+  import HeaderLogo from "components/HeaderLogo";
 
   export default {
     name: 'App',
     components: {
-      Header
+      Header,
+      HeaderLogo
     },
     data() {
       return {
