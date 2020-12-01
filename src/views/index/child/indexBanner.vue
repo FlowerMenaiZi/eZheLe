@@ -29,7 +29,7 @@
       return {
         bannerArr: [banner1, banner2, banner3, banner4, banner5],
         currentIndex:1,
-        bannerUrl:'banner1.png',
+        bannerUrl:'#',
         bannerImg:banner1
       }
     },

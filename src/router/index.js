@@ -10,6 +10,10 @@ const collection = ()=>import('views/collection/Collection')
 const login = ()=>import('views/login/Login')
 const register = ()=>import('views/register/Register')
 const forget = ()=>import('views/forgetPass/Forget')
+const seller = ()=>import('views/seller/Seller')
+const searchResult = ()=>import('views/searchResult/SearchRes')
+const changePos = ()=>import('views/changePos/ChangePos')
+const sellerAdmin = ()=>import('views/sellerAdmin/SellerAdmin')
 
 const routes = [
   {
@@ -43,6 +47,22 @@ const routes = [
   {
     path: '/forget',
     component: forget
+  },
+  {
+    path: '/seller',
+    component: seller
+  },
+  {
+    path: '/result/:item',
+    component: searchResult
+  },
+  {
+    path: '/selectpos',
+    component: changePos
+  },
+  {
+    path: '/admin',
+    component: sellerAdmin
   },
 ]
 

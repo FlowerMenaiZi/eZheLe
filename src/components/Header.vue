@@ -2,7 +2,7 @@
   <div id="header_link">
     <div class="hLink disf">
       <div class="hLink-left disf">
-        <p class="address">当前地区：广东中山 <a href="#">【切换】</a></p>
+        <p class="address">当前地区：{{proV}}{{citY}} <a href="/selectpos">【切换】</a></p>
         <p><router-link to="/login">登入</router-link>/<router-link to="/register">注册</router-link></p>
       </div>
       <div class="hLink-right">
@@ -10,6 +10,7 @@
           <li><router-link to="/index">首页</router-link></li>
           <li><router-link to="/mine">个人中心</router-link></li>
           <li><router-link to="/cart">购物车</router-link></li>
+          <li><router-link to="/seller">卖家登录</router-link></li>
           <li><router-link to="/collection">我的收藏</router-link></li>
         </ul>
       </div>
@@ -19,7 +20,23 @@
 
 <script>
   export default {
-    name: "Header"
+    name: "Header",
+    props:{
+      province:{
+        type:String
+      },
+      city:{
+        type:String
+      }
+    },
+    computed:{
+      proV(){
+       return this.province.slice(0,this.province.length-1)
+      },
+      citY(){
+        return this.city.slice(0,this.city.length-1)
+      }
+    }
   }
 </script>
 

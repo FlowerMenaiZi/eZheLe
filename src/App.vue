@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header v-show="isShow"/>
+    <Header v-show="isShowH"  :province="province" :city="city" />
     <HeaderLogo v-show="isShow"></HeaderLogo>
     <router-view/>
   </div>
@@ -19,20 +19,59 @@
     data() {
       return {
         path: '',
-        isShow: true
+        isShow: true,
+        isShowH: true,
+        province:'',
+        city:'',
       }
     },
     mounted() {
       this.path = this.$route.path
+      //获取用户当前位置
+      this.$api.get(
+        '/v3/ip',                           //url
+        {},  //headers
+        {"output":"json","key":"6eeea94cca86ed8d0c8cb9732ec4c07a"}, //params
+        successRes => {                        //success(data)方法
+          this.province = successRes.province
+          this.city = successRes.city
+          localStorage.setItem("adcode",successRes.adcode);
+        },
+        failureRes => {                        //failure(data)方法
+          console.log(failureRes)
+        },
+        "https://restapi.amap.com/",
+      )
     },
     watch: {
       $route(to, from) {
         this.path = to.path
-        // console.log(this.path);
-        if (this.path === '/login' || this.path === '/register' || this.path === '/forget') {
-          this.isShow = false
-        } else {
-          this.isShow = true
+        this.isShow = true
+        this.isShowH = true
+        switch (this.path) {
+          case "/login":
+            this.isShow = false
+            this.isShowH = false
+            break;
+          case "/register":
+            this.isShow = false
+            this.isShowH = false
+            break;
+          case "/forget":
+            this.isShow = false
+            this.isShowH = false
+            break;
+          case "/selectpos":
+            this.isShow = false
+            break
+          case "/seller":
+            this.isShow = false
+            this.isShowH = false
+            break
+          case "/admin":
+            this.isShow = false
+            this.isShowH = false
+            break
         }
       }
     },

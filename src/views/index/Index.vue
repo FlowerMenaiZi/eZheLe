@@ -31,6 +31,8 @@
       indexNearby,
       Footer,
       Copyright,
+    },
+    mounted() {
 
     }
   }
