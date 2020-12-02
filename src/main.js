@@ -4,7 +4,10 @@ import router from './router'
 import store from './store'
 import VueSweetalert2 from './plugins/vue-sweetalert2'
 import request from "./network/request";
+import Antd from 'ant-design-vue';
+
 Vue.prototype.$api = request
+Vue.use(Antd)
 Vue.use(VueSweetalert2)
 Vue.config.productionTip = false
 

@@ -1,6 +1,6 @@
 <template>
   <div id="header_app">
-    <div class="hApp disf">
+    <div class="hApp disf" :class="{adminHeader:isAdminHeader}">
       <div class="hApp_left disf">
         <a href="">
           <img src="~assets/icon/LOGO.png" alt="">
@@ -67,7 +67,14 @@
           }
         },
         isShowHotSearch:false,
-        searchItem:''
+        searchItem:'',
+
+      }
+    },
+    props:{
+      isAdminHeader:{
+        type:Boolean,
+        default:false
       }
     },
     methods:{
@@ -109,7 +116,9 @@
     align-items: center;
     justify-content: space-between;
   }
-
+  .adminHeader{
+    width: 95% !important;
+  }
   #header_app .hApp .hApp_left {
     height: 100%;
     line-height: 90px;
