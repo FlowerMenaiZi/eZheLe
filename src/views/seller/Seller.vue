@@ -11,7 +11,7 @@
         <div><input type="text" placeholder="账号" ref="account"></div>
         <div><input type="password" placeholder="密码" ref="password"></div>
         <div>
-          <button @click="sellerLogin">登录</button>
+          <button @click="sellerLogin"  @keyup.enter="sellerLogin">登录</button>
         </div>
       </div>
     </div>

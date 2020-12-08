@@ -14,11 +14,11 @@
           <span class="inforName">世赛小组烧烤店</span>
         </div>
         <div class="disf infSec">
-          <span>
+          <span class="tel">
             <span class="title">店家联系电话</span>
             <span>17666362762</span>
           </span>
-          <span>
+          <span class="time">
             <span class="title">营业时间</span>
             <a-time-picker use24-hours format="hh:mm a" @change="onChangeFir" v-show="!isModify" ref="timeFirst"/>
             <span v-show="isModify">{{firstTime}}</span>
@@ -147,8 +147,13 @@
     width: 55%;
   }
 
-  .infSec span {
-    flex: 1;
+  .infSec span.tel {
+    display: inline-block;
+    width: 300px;
+    line-height: 32px;
+  }
+  .infSec span.time {
+    line-height: 32px;
   }
 
   .information div {
@@ -168,6 +173,8 @@
     outline: none;
     width: 60%;
     border: 1px solid #cfcfcf;
+    height: 30px;
+    text-indent: 10px;
   }
 
   .information textarea {
@@ -177,6 +184,8 @@
     max-height: 162px;
     max-width: 60%;
     outline: none;
+    text-indent: 10px;
+    border: 1px solid #cfcfcf;
   }
 
   .btn {

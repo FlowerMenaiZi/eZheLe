@@ -385,8 +385,6 @@
       //获取用户搜索信息
       this.searchItem = this.$route.params.item
       //  发送服务器数据请求
-
-
       //  获取地区
       //  获取当前地区的adcode
       this.adcode = localStorage.getItem('adcode')
@@ -395,11 +393,9 @@
         {},
         {"paCode": this.adcode},
         success => {
-          console.log(success);
           this.block = success
         },
         failureRes => {
-          console.log(failureRes);
         }
       )
     },

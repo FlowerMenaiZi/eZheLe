@@ -83,7 +83,7 @@ function apiAxios(method, url, headers, params, success, failure,root2=null) {
     .catch(function (err) {
       let res = err.response
       if (err) {
-        window.alert('api error, HTTP CODE: ' + res.status)
+        window.alert('api error, HTTP CODE: ' + res)
       }
     })
 }

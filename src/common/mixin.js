@@ -10,6 +10,7 @@ export const checkAll = {
   methods:{
     //验证手机号码是否填写且合法性
     checkPhone() {
+      this.phone = this.$refs.phone.value
       if (this.phone === '') {
         this.showToast('请先填写手机号码')
         return false

@@ -32,7 +32,7 @@
           <div class="agree">
             <input type="checkbox" name="agree" @click="agreeClick" :checked="isAgree">
             <p>我已阅读并接受<span>个人信息收集声明</span>以及<span>网站使用和销售条款</span></p>
-          </div>
+          </div>`
           <div>
             <button id="loginBtn" @click="loginClick">登录</button>
           </div>
@@ -112,6 +112,7 @@
       },
       //获取手机验证码
       getPhoneCode() {
+
         if (this.checkPhone()) {
           //在这里进行发送手机验证码并获取后台返回的验证码进行判断
           this.isDisabled = true
@@ -265,7 +266,6 @@
     cursor: pointer;
     background: none;
   }
-
 
   input[type=checkbox]:after {
     position: absolute;

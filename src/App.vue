@@ -2,7 +2,7 @@
   <div id="app">
     <Header v-show="isShowH"  :province="province" :city="city" />
     <HeaderLogo v-show="isShow"></HeaderLogo>
-    <router-view/>
+   <keep-alive exclude="SearchRes"><router-view/></keep-alive>
   </div>
 </template>
 
@@ -23,6 +23,8 @@
         isShowH: true,
         province:'',
         city:'',
+        letterStart:[],
+        letterCity: {},
       }
     },
     mounted() {
@@ -36,12 +38,36 @@
           this.province = successRes.province
           this.city = successRes.city
           localStorage.setItem("adcode",successRes.adcode);
+          // this.$bus.$emit('updataCode',successRes.adcode)
         },
         failureRes => {                        //failure(data)方法
           console.log(failureRes)
         },
         "https://restapi.amap.com/",
       )
+      if (!localStorage.getItem('letterStart')){
+        this.$api.get(
+          '/index/index/addressPy',
+          {},
+          {},
+          success => {
+            console.log(success);
+            for (let index in success.data) {
+              this.letterStart.push(index)
+              console.log(index,success.data[index]);
+              this.letterCity[index] = []
+              for (let item in success.data[index]){
+                console.log(success.data[index][item].cri_short_name);
+                this.letterCity[index].push(success.data[index][item].cri_short_name)
+              }
+            }
+            localStorage.setItem('letterStart',JSON.stringify(this.letterStart))
+            localStorage.setItem('letterCity',JSON.stringify(this.letterCity))
+          },
+          failureRes => {
+          }
+        )
+      }
     },
     watch: {
       $route(to, from) {
@@ -72,6 +98,10 @@
             this.isShow = false
             this.isShowH = false
             break
+          case "/mine":
+            this.isShow = false
+            this.isShowH = true
+            break;
         }
       }
     },
@@ -79,6 +109,12 @@
 </script>
 
 <style>
+  html{
+    font-size: 14px;
+  }
+  table{
+    border-collapse: collapse;
+  }
   * {
     margin: 0;
     padding: 0;

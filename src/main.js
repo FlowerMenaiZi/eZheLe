@@ -7,6 +7,7 @@ import request from "./network/request";
 import Antd from 'ant-design-vue';
 
 Vue.prototype.$api = request
+Vue.prototype.$bus=new Vue();
 Vue.use(Antd)
 Vue.use(VueSweetalert2)
 Vue.config.productionTip = false
