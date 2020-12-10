@@ -2,7 +2,7 @@
   <div id="app">
     <Header v-show="isShowH"  :province="province" :city="city" />
     <HeaderLogo v-show="isShow"></HeaderLogo>
-   <keep-alive exclude="SearchRes"><router-view/></keep-alive>
+   <keep-alive exclude="SearchRes,addPayPass,modifyPay"><router-view/></keep-alive>
   </div>
 </template>
 
@@ -99,6 +99,14 @@
             this.isShowH = false
             break
           case "/mine":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/addPay":
+            this.isShow = false
+            this.isShowH = true
+            break;
+            case "/modifyPay":
             this.isShow = false
             this.isShowH = true
             break;

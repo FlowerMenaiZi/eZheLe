@@ -3,22 +3,24 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const index = ()=>import('views/index/Index')
-const mine = ()=>import('views/mine/Mine')
-const cart = ()=>import('views/cart/Cart')
-const collection = ()=>import('views/collection/Collection')
-const login = ()=>import('views/login/Login')
-const register = ()=>import('views/register/Register')
-const forget = ()=>import('views/forgetPass/Forget')
-const seller = ()=>import('views/seller/Seller')
-const searchResult = ()=>import('views/searchResult/SearchRes')
-const changePos = ()=>import('views/changePos/ChangePos')
-const sellerAdmin = ()=>import('views/sellerAdmin/SellerAdmin')
+const index = () => import('views/index/Index')
+const mine = () => import('views/mine/Mine')
+const cart = () => import('views/cart/Cart')
+const collection = () => import('views/collection/Collection')
+const login = () => import('views/login/Login')
+const register = () => import('views/register/Register')
+const forget = () => import('views/forgetPass/Forget')
+const seller = () => import('views/seller/Seller')
+const searchResult = () => import('views/searchResult/SearchRes')
+const changePos = () => import('views/changePos/ChangePos')
+const sellerAdmin = () => import('views/sellerAdmin/SellerAdmin')
+const addPay = () => import('views/mine/addPayPass')
+const modifyPayPass = () => import('views/mine/modifyPayPass')
 
 const routes = [
   {
     path: '',
-    redirect:'/index',
+    redirect: '/index',
   },
   {
     path: '/index',
@@ -26,7 +28,15 @@ const routes = [
   },
   {
     path: '/mine',
-    component: mine
+    component: mine,
+  },
+  {
+    path: '/addPay',
+    component: addPay
+  },
+  {
+    path: '/modifyPay',
+    component: modifyPayPass
   },
   {
     path: '/cart',

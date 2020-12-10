@@ -9,7 +9,7 @@
           <img src="~assets/icon/account-fill.png" alt="">
           我的设置
         </div>
-        <p>个人信息</p>
+        <p><router-link to="/mine">个人信息</router-link></p>
       </div>
       <div class="mySet">
         <div>
@@ -59,7 +59,13 @@
 
 <script>
   export default {
-    name: "mineNav"
+    name: "mineNav",
+    props:{
+      witchActive:{
+        type:String,
+        default:''
+      }
+    }
   }
 </script>
 

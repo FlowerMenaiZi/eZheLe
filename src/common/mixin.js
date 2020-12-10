@@ -95,5 +95,11 @@ export const checkAllPass = {
         return true
       }
     },
+    //显示错误信息
+    showToast(message) {
+      this.$swal({
+        text: message
+      })
+    },
   }
 }
