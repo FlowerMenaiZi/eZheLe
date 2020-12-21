@@ -101,6 +101,7 @@
     background: #fff;
     height: 40px;
     font-size: 13px;
+    min-width: 1200px;
   }
 
   #header_link .hLink {

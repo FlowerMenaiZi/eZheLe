@@ -66,6 +66,7 @@
     background: #323232;
     padding: 20px 0;
     margin-top: 40px;
+    min-width: 1200px;
   }
 
   #footer .footer {

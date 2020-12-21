@@ -20,10 +20,10 @@
           </span>
           <span class="time">
             <span class="title">营业时间</span>
-            <a-time-picker use24-hours format="hh:mm a" @change="onChangeFir" v-show="!isModify" ref="timeFirst"/>
+            <a-time-picker use24-hours format="hh:mm a" @change="onChangeFir" v-show="!isModify" ref="timeFirst" placeholder="请选择时间"/>
             <span v-show="isModify">{{firstTime}}</span>
             ——
-            <a-time-picker use24-hours format="hh:mm a" @change="onChangeSec" v-show="!isModify" ref="timeSecond"/>
+            <a-time-picker use24-hours format="hh:mm a" @change="onChangeSec" v-show="!isModify" ref="timeSecond" placeholder="请选择时间"/>
             <span v-show="isModify">{{secondTime}}</span>
           </span>
         </div>

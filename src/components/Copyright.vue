@@ -17,6 +17,7 @@
     width: 100%;
     background: #000000;
     padding: 5px;
+    min-width: 1200px;
   }
 
   #copyright .copyright {

@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Header v-show="isShowH"  :province="province" :city="city" />
+    <Header v-show="isShowH" :province="province" :city="city"/>
     <HeaderLogo v-show="isShow"></HeaderLogo>
-   <keep-alive exclude="SearchRes,addPayPass,modifyPay"><router-view/></keep-alive>
+    <keep-alive exclude="SearchRes,addPayPass,modifyPay">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
@@ -21,9 +23,9 @@
         path: '',
         isShow: true,
         isShowH: true,
-        province:'',
-        city:'',
-        letterStart:[],
+        province: '',
+        city: '',
+        letterStart: [],
         letterCity: {},
       }
     },
@@ -33,11 +35,11 @@
       this.$api.get(
         '/v3/ip',                           //url
         {},  //headers
-        {"output":"json","key":"6eeea94cca86ed8d0c8cb9732ec4c07a"}, //params
+        {"output": "json", "key": "6eeea94cca86ed8d0c8cb9732ec4c07a"}, //params
         successRes => {                        //success(data)方法
           this.province = successRes.province
           this.city = successRes.city
-          localStorage.setItem("adcode",successRes.adcode);
+          localStorage.setItem("adcode", successRes.adcode);
           // this.$bus.$emit('updataCode',successRes.adcode)
         },
         failureRes => {                        //failure(data)方法
@@ -45,7 +47,7 @@
         },
         "https://restapi.amap.com/",
       )
-      if (!localStorage.getItem('letterStart')){
+      if (!localStorage.getItem('letterStart')) {
         this.$api.get(
           '/index/index/addressPy',
           {},
@@ -54,15 +56,15 @@
             console.log(success);
             for (let index in success.data) {
               this.letterStart.push(index)
-              console.log(index,success.data[index]);
+              console.log(index, success.data[index]);
               this.letterCity[index] = []
-              for (let item in success.data[index]){
+              for (let item in success.data[index]) {
                 console.log(success.data[index][item].cri_short_name);
                 this.letterCity[index].push(success.data[index][item].cri_short_name)
               }
             }
-            localStorage.setItem('letterStart',JSON.stringify(this.letterStart))
-            localStorage.setItem('letterCity',JSON.stringify(this.letterCity))
+            localStorage.setItem('letterStart', JSON.stringify(this.letterStart))
+            localStorage.setItem('letterCity', JSON.stringify(this.letterCity))
           },
           failureRes => {
           }
@@ -106,7 +108,35 @@
             this.isShow = false
             this.isShowH = true
             break;
-            case "/modifyPay":
+          case "/modifyPay":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/order":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/eval":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/hShop":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/collection":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/balance":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/address":
+            this.isShow = false
+            this.isShowH = true
+            break;
+          case "/entry":
             this.isShow = false
             this.isShowH = true
             break;
@@ -117,12 +147,14 @@
 </script>
 
 <style>
-  html{
+  html {
     font-size: 14px;
   }
-  table{
+
+  table {
     border-collapse: collapse;
   }
+
   * {
     margin: 0;
     padding: 0;

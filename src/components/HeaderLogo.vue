@@ -107,6 +107,7 @@
     width: 100%;
     height: 90px;
     background: #ffab36;
+    min-width: 1200px;
   }
 
   #header_app .hApp {

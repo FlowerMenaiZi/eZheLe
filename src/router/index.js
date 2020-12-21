@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const index = () => import('views/index/Index')
 const mine = () => import('views/mine/Mine')
 const cart = () => import('views/cart/Cart')
-const collection = () => import('views/collection/Collection')
+const collection = () => import('views/mine/collection')
 const login = () => import('views/login/Login')
 const register = () => import('views/register/Register')
 const forget = () => import('views/forgetPass/Forget')
@@ -16,6 +16,12 @@ const changePos = () => import('views/changePos/ChangePos')
 const sellerAdmin = () => import('views/sellerAdmin/SellerAdmin')
 const addPay = () => import('views/mine/addPayPass')
 const modifyPayPass = () => import('views/mine/modifyPayPass')
+const myOrder = () => import('views/mine/myOrder')
+const evaluation = () => import('views/mine/evaluation')
+const history = () => import('views/mine/historyShop')
+const balance = () => import('views/mine/balance')
+const address = () => import('views/mine/shipAddress')
+const entry = () => import('views/mine/storeEntry')
 
 const routes = [
   {
@@ -37,6 +43,30 @@ const routes = [
   {
     path: '/modifyPay',
     component: modifyPayPass
+  },
+  {
+    path: '/order',
+    component: myOrder
+  },
+  {
+    path: '/eval',
+    component: evaluation
+  },
+  {
+    path: '/hShop',
+    component: history
+  },
+  {
+    path: '/balance',
+    component: balance
+  },
+  {
+    path: '/address',
+    component: address
+  },
+  {
+    path: '/entry',
+    component: entry
   },
   {
     path: '/cart',

@@ -13,18 +13,18 @@
       </div>
       <div class="mySet">
         <div>
-          <img src="~assets/icon/New user zone-fill.png" alt="">
-          我的订单
+          <router-link to="/order"><img src="~assets/icon/New user zone-fill.png" alt="">
+            我的订单</router-link>
         </div>
         <p>待收货</p>
-        <p>待评价</p>
+        <p><router-link to="/eval">待评价</router-link></p>
       </div>
       <div class="mySet">
         <div>
           <img src="~assets/icon/collection-fill.png" alt="">
-          历史店铺
+          <router-link to="/hShop">历史店铺</router-link>
         </div>
-        <p>收藏店铺</p>
+        <p><router-link to="/collection">收藏店铺</router-link></p>
         <p>(你关注的店铺)</p>
       </div>
     </div>
@@ -32,20 +32,20 @@
       <div class="myMoney">
         <div>
           <img src="~assets/icon/qian.png" alt="">
-          我的资产
+          <router-link to="/balance">我的资产</router-link>
         </div>
         <p>(红包和代金券)</p>
       </div>
       <div class="myMoney">
         <div>
           <img src="~assets/icon/house.png" alt="">
-          收货地址
+          <router-link to="/address">收货地址</router-link>
         </div>
       </div>
       <div class="myMoney">
         <div>
           <img src="~assets/icon/dianpu.png" alt="">
-          店铺入驻
+          <router-link to="/entry">店铺入驻</router-link>
         </div>
       </div>
     </div>

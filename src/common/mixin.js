@@ -72,7 +72,7 @@ export const checkAllPass = {
   methods: {
     //验证密码是否填写是否合法
     checkPassword() {
-      var myreg = /^(?=.*?[0-9])(?=.*?[a-z])[0-9a-z]{8,}$/;
+      var myreg = /^(?=.*?[0-9])(?=.*?[a-z])[0-9a-zA-Z]{8,}$/;
       if (this.$refs.password.value === '') {
         this.showToast('请填写您的密码')
         return false
