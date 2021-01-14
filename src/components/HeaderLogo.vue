@@ -2,10 +2,13 @@
   <div id="header_app">
     <div class="hApp disf" :class="{adminHeader:isAdminHeader}">
       <div class="hApp_left disf">
-        <a href="">
+        <router-link to="/index">
           <img src="~assets/icon/LOGO.png" alt="">
-        </a>
+        </router-link>
+        <router-link to="/index">
         <p>饿着了</p>
+        </router-link>
+
       </div>
       <div class="right">
         <slot name="search">
@@ -125,7 +128,7 @@
     line-height: 90px;
   }
 
-  #header_app .hApp .hApp_left a {
+  #header_app .hApp .hApp_left a:first-child {
     width: 12%;
   }
 

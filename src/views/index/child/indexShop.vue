@@ -33,7 +33,7 @@
             realPrice:'28.88',
             oldPrice:'¥45.9',
             shopTitle:'寿司先森（石岐店）',
-            link:'xxx.com'
+            link:'/shop/1'
           },
           1:{
             shopImg:shopImg2,
@@ -41,7 +41,7 @@
             realPrice:'18.88',
             oldPrice:'¥22.9',
             shopTitle:'薇尼诗（石岐店）',
-            link:'xxx.com'
+            link:'/shop/2'
           },
           2:{
             shopImg:shopImg3,

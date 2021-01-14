@@ -43,9 +43,10 @@
   import Footer from "components/Footer";
   import Copyright from "components/Copyright";
   import Paging from "components/Paging";
+  import guessLike from "components/guessLike";
+
 
   import businessItem from "./child/businessItem";
-  import guessLike from "./child/guessLike";
 
   import businImage from "assets/image/heyTea.jpg"
   import guessImage from "assets/image/tianpin.jpg"

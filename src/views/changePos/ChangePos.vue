@@ -165,7 +165,7 @@
                 localStorage.setItem('province', this.curSelectPro)
                 localStorage.setItem('city', this.secondCity)
                 this.$bus.$emit('updateData', {province: this.curSelectPro, city: this.secondCity})
-              }, 2500)
+              }, 2000)
             }
           }
         }

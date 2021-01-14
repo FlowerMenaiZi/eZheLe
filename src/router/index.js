@@ -22,6 +22,7 @@ const history = () => import('views/mine/historyShop')
 const balance = () => import('views/mine/balance')
 const address = () => import('views/mine/shipAddress')
 const entry = () => import('views/mine/storeEntry')
+const shop = () => import('views/shop/Shop')
 
 const routes = [
   {
@@ -103,6 +104,10 @@ const routes = [
   {
     path: '/admin',
     component: sellerAdmin
+  },
+  {
+    path: '/shop/:shopId',
+    component: shop
   },
 ]
 

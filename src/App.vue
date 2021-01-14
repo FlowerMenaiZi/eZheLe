@@ -140,6 +140,10 @@
             this.isShow = false
             this.isShowH = true
             break;
+          case "/cart":
+            this.isShow = false
+            this.isShowH = true
+            break;
         }
       }
     },
